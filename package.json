@@ -1,0 +1,20 @@
+{
+  "name": "tugas2-diondevara",
+  "version": "1.0.0",
+  "description": "tugas2-diondevara created by GitHub Classroom",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2019Genap-PBKK-F/tugas2-diondevara.git"
+  },
+  "author": "diondevara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2019Genap-PBKK-F/tugas2-diondevara/issues"
+  },
+  "homepage": "https://github.com/2019Genap-PBKK-F/tugas2-diondevara#readme"
+}
