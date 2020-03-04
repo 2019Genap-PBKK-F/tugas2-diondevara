@@ -1,17 +1,18 @@
-const http = require("http");
+var express = require('express');
+var app = express();
 const hostname = '10.199.14.46';
 const port = 8015;
 
-//Create HTTP server and listen on port 8015 for requests
-const server = http.createServer((req, res) => {
+var mahasiswaController = require('./Controller/MahasiswaController')();
 
-  //Set the response HTTP header with HTTP status and Content type
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Test\n');
+app.get("/",function(request, response)
+{
+  response.json({"Message":"Welcome"});
 });
+app.use("/api/Mahasiswa", mahasiswaController);
 
 //listen for request on port 3000, and as a callback function have the port listened on logged
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+app.listen(port, function () {
+  var message = "Server running on Port: " + port;
+  console.log(message);
 });
