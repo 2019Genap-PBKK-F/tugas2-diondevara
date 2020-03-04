@@ -5,7 +5,7 @@ var connect = function()
         user: 'su',
         password: 'SaSa1212',
         server: '10.199.13.253',
-        database: 'nrp05111740007007'
+        database: 'nrp05111740000080'
     });
     console.log(conn)
     return conn;
