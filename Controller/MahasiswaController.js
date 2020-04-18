@@ -60,7 +60,71 @@ var routes = function()
             });
         });
 
-        
+        router.route('/')
+        .put(function (req, res) {
+            var _productID = req.params.ID;
+            conn.connect().then(function () {
+                var transaction = new sql.Transaction(conn);
+                transaction.begin().then(function () {
+                    var request = new sql.Request(transaction);
+                    request.input("ID", sql.Int, req.body.ID)
+                    request.input("NRP", sql.VarChar(50), req.body.NRP)
+                    request.input("Nama", sql.NChar(4), req.body.Nama)
+                    request.input("Angkatan", sql.Int, req.body.Angkatan)
+                    request.input("Tgl_lahir", sql.Date, req.body.Tgl_lahir)
+                    request.execute("Usp_Tes").then(function () {
+                        transaction.commit().then(function (recordSet) {
+                            conn.close();
+                            res.status(200).send(req.body);
+                        }).catch(function (err) {
+                            conn.close();
+                            res.status(400).send("Error while updating data" + err);
+                        });
+                    }).catch(function (err) {
+                        conn.close();
+                        res.status(400).send("Error while updating data" + err);
+                    });
+                }).catch(function (err) {
+                    conn.close();
+                    res.status(400).send("Error while updating data" + err);
+                });
+            }).catch(function (err) {
+                conn.close();
+                res.status(400).send("Error while updating data");
+            });
+        });
+
+        router.route('/')
+        .delete(function (req, res) {
+            //var _productID = req.params.id;
+            conn.connect().then(function () {
+                var transaction = new sql.Transaction(conn);
+                transaction.begin().then(function () {
+                    var request = new sql.Request(transaction);
+                    request.input("ID", sql.Int, req.body.ID)
+                    request.input("NRP", sql.VarChar(50), req.body.NRP)
+                    request.input("Nama", sql.NChar(4), req.body.Nama)
+                    request.input("Angkatan", sql.Int, req.body.Angkatan)
+                    request.input("Tgl_lahir", sql.Date, req.body.Tgl_lahir)
+                    request.execute("Usp_Remove").then(function () {
+                        transaction.commit().then(function (recordSet) {
+                            conn.close();
+                            res.status(200).json("ProductID:" + req.param.ID);
+                        }).catch(function (err) {
+                            conn.close();
+                            res.status(400).send("Error while Deleting data:" + err);
+                        });
+                    }).catch(function (err) {
+                        conn.close();
+                        res.status(400).send("Error while Deleting data:" + err);
+                    });
+                }).catch(function (err) {
+                    conn.close();
+                    res.status(400).send("Error while Deleting data:" + err);
+                });
+            })
+        });
+
     return router;       
 };
 module.exports = routes;
