@@ -25,7 +25,7 @@ const config = {
     user: 'sa',
     password: 'SaSa1212',
     server: '10.199.13.253',
-    database: 'nrp05111740000045'
+    database: 'nrp05111740000080'
 };
 
 var executeQuery = function(res, query, model, reqType) {
