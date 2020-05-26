@@ -56,10 +56,8 @@ var executeQuery = function(res, query, model, reqType) {
 }
 
 //GET FUNCTION
-
 app.get("/",function(req, res)
 {
-  // res.end('45 Butuh Pelukan');
   res.sendFile(__dirname + '/index.html')
 });
 // datadasar
