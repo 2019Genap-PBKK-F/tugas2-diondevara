@@ -5,7 +5,8 @@ const app = express();
 const sql = require('mssql')
 // hostname='127.0.0.1'
 const port = 8015;
-const hostname = '10.199.14.46';
+const hostname = 'localhost';
+const https = require('https')
 
 
 //cors
@@ -56,8 +57,10 @@ var executeQuery = function(res, query, model, reqType) {
 }
 
 //GET FUNCTION
+
 app.get("/",function(req, res)
 {
+  // res.end('45 Butuh Pelukan');
   res.sendFile(__dirname + '/index.html')
 });
 // datadasar
@@ -614,7 +617,17 @@ app.delete("/api/Indikator_SatuanKerja_Log/:id_indikator_satker", function(req, 
 });
 //  LISTEN
 
+/*
 app.listen(port, hostname, function () {
   var message = "Server runnning on Port: " + port;
   console.log(message);
 });
+*/
+
+https.createServer({
+  key: fs.readFileSync(__dirname+'/diondevara.github.io.key', 'utf8'),
+  cert: fs.readFileSync(__dirname+'/diondevara.github.io.cert', 'utf8')
+}, app)
+.listen(port, hostname, function () {
+  console.log('Example app listening on port 3000! Go to https://'+hostname+':'+port+'/')
+})
